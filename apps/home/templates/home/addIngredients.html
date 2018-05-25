@@ -5,15 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Bootstrap 4 Starter Pack</title>
+  <title>addIngredients</title>
   <link rel="stylesheet" href="{% static 'css/css/fontawesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/my_style.css' %}">
 </head>
 <body>
+  <!-- Main Header -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
     <div class="container">
-      <a class="navbar-brand" href="#">Welcome: {{ curUser.first_name }}</a>
+      <a class="navbar-brand" href="/">Welcome: {{ curUser.first_name }}</a>
       <ul class="navbar-nav">
           <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
@@ -21,11 +22,26 @@
           <li class="nav-item">
               <a class="nav-link" href="/recipes">Recipes</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Search</a>
+
+          <li class="nav-item dropdown">
+            <a  href=""  class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
+            <div class="dropdown-menu">
+              <a href="/beef" class="dropdown-item">Beef</a>
+              <a href="/chicken" class="dropdown-item">Chicken</a>
+              <a href="/pork" class="dropdown-item">Pork</a>
+              <a href="/seafood" class="dropdown-item">Seafood</a>
+              <a href="/dessert" class="dropdown-item">Dessert</a>
+              <a href="/sides" class="dropdown-item">Sides</a>
+              <a href="/pasta" class="dropdown-item">Pasta</a>
+              <a href="/drinks" class="dropdown-item">Drinks</a>
+            </div>
           </li>
+
           <li class="nav-item">
               <a class="nav-link" href="#">What do you have?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
           </li>
       </ul>
     </div>
@@ -37,22 +53,42 @@
       <div class="row">
         <div class="col-md-6">
           <h3>Add Ingredients to Recipe {{ curRecipe.title }}</h3>
+          <hr>
           <form class="" action="/addIngredient/{{ curRecipe.id }}" method="post">
             {% csrf_token %}
             <label>Ingredients / Amount:</label>
             <input type="text" name="name" placeholder="Enter Ingredient / Amounts" class="form-control mb-3">
             <input type="submit" value="Add Ingredient">
           </form>
-          <a href="/clear" class="btn btn-success mt-5">Done With Recipe</a>
         </div>
-        <div class="col-md-6"></div>
+        <div  class="col-md-6">
+          <h3>Ingredient List:</h3>
+          <hr>
+          <div id="list"  style="overflow-y:scroll; height:600px" class="bg-info text-white border border-dark smooth-scroll">
+          {% for ingredient in allIngredients %}
+            <ul>
+              <li>{{ ingredient.name }} | <a href="/deleteIngr/{{ ingredient.id }}" class="text-light">x</a> </li>
+            </ul>
+          {% endfor %}
+        </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Main Footer -->
+  <footer id="main_footer" class="text-center p-4 bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          Copyright 2018 &copy; Johnny's Recipes
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
 </html>

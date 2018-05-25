@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Johnny's Recipes</title>
+  <title>Sides</title>
   <link rel="stylesheet" href="{% static 'css/css/fontawesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static '/css/my_style.css' %}">
 </head>
 <body>
   <!-- Main Header -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
     <div class="container">
       <a class="navbar-brand" href="/">Welcome: {{ curUser.first_name }}</a>
       <ul class="navbar-nav">
@@ -46,13 +46,13 @@
   </nav>
 
   <!-- Recipe Section -->
-  <section id="allRecipes" class="bg-light">
+  <section id="allRecipes" class="bg-light text-center">
     <div class="container">
       <div class="row">
         <div class="col">
-          <h3>Recipes</h3>
+          <h3>Sides</h3>
           <hr>
-          {% for recipe in recipes %}
+          {% for recipe in sidesRecipes %}
           <h5 style="text-decoration:none" class="d-inline-block"><a href="/show/{{recipe.id}}">{{ recipe.title }}</a></h5><br>
           {% endfor %}
         </div>
@@ -70,9 +70,9 @@
       </div>
     </div>
   </footer>
-</body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
 </html>
