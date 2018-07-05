@@ -8,11 +8,11 @@
   <title>Johnny's Recipes</title>
   <link rel="stylesheet" href="{% static 'css/css/fontawesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static '/css/my_style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/my_style.css' %}">
 </head>
 <body>
   <!-- Main Header -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/">Welcome: {{ curUser.first_name }}</a>
       <ul class="navbar-nav">
@@ -36,7 +36,7 @@
             </div>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">What do you have?</a>
+              <a class="nav-link" href="search/">What do you have?</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
@@ -46,15 +46,15 @@
   </nav>
 
   <!-- Add Recipe Section -->
-  <section id="add_recipe">
+  <section id="main" class="bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div id="regLog" class="col-md-6">
           <form action="/createUser" method="post" class="mb-3">
             {% csrf_token %}
-            <label>First Name:</label><br>
-            <input type="text" name="first_name" placeholder="Enter First Name" class=" form-group mb-3"><br>
-            <input type="submit" value="Add User">
+            <h4>Register:</h4><br>
+            <input type="text" name="first_name" placeholder="Enter First Name" class="form-group mb-3"><br>
+            <input type="submit" value="Register">
           </form>
           <h4>Login:</h4>
           <form  action="/login" method="post">
@@ -68,7 +68,7 @@
             {%endfor%}
           {%endif%}
         </div>
-          <div class="col-md-4">
+          <div id="add_recipe" class="col-md-6">
             <form class="" action="/createRecipe" method="post">
               {% csrf_token %}
               <label for="title">Title:</label>
@@ -93,22 +93,6 @@
       </div>
     </section>
 
-    <!-- <li class="nav-item dropdown">
-      <a  href=""  class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
-      <div class="dropdown-menu">
-        <a href="/beef" class="dropdown-item">Beef</a>
-        <a href="/chicken" class="dropdown-item">Chicken</a>
-        <a href="/pork" class="dropdown-item">Pork</a>
-        <a href="/seafood" class="dropdown-item">Seafood</a>
-        <a href="/dessert" class="dropdown-item">Dessert</a>
-      </div>
-    </li> -->
-
-    <!--DB col amt is category-->
-    <!-- <input type="text" name="amt" placeholder="Enter Category" class="form-control mb-3">
-    <input type="submit" value="Add Recipe"> -->
-
-
     <!-- Main Footer -->
     <footer id="main_footer" class="text-center p-4 bg-dark text-white">
       <div class="container">
@@ -119,9 +103,14 @@
         </div>
       </div>
     </footer>
-    </body>
+  </body>
+  <style media="screen">
+    #main{
+      background: #0c6889;
+    }
+  </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    </html>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</html>

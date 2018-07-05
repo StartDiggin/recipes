@@ -31,8 +31,6 @@ class IngredientManager(models.Manager):
         ingredient = Ingredient.objects.create(name=postData['name']);
         return ingredient;
 
-
-
 class User(models.Model):
     first_name = models.CharField(max_length=255);
     created_at = models.DateTimeField(auto_now_add=True);
